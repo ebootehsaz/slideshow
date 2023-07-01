@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', function() {
+    const delay = 6_000; 
     const fileInput = document.getElementById('file-input');
-    const fileLabel = document.getElementById('file-label');
     const selectedCount = document.getElementById('selected-count');
     const startSlideshowBtn = document.getElementById('start-slideshow');
     const shuffleToggleBtn = document.getElementById('shuffle-toggle');
@@ -55,9 +55,8 @@ window.addEventListener('DOMContentLoaded', function() {
         // Move to the next photo after 3 seconds
         setTimeout(function() {
           currentPhotoIndex++;
-          slideshowImage.style.display = 'none';
           startSlideshow();
-        }, 3000);
+        }, delay);
       });
       
       reader.readAsDataURL(photo);
