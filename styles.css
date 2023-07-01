@@ -17,7 +17,7 @@ body {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    transition: opacity 0.5s ease-in-out; /* Add this line */
+    transition: opacity 3.5s ease-in-out;
 }
   
 #controls-container {
@@ -35,26 +35,11 @@ input[type="file"] {
     display: none;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 5px;
-}
-
-button.active {
-    background-color: #ff0707;
-    color: #000;
-}
-
 input[type="file"] {
     display: none;
 }
 
-#file-label {
+#file-label, button {
     display: inline-block;
     padding: 10px 20px;
     background-color: #2f3444;
@@ -65,7 +50,7 @@ input[type="file"] {
     margin: 5px;
 }
 
-#file-label:hover {
+#file-label:hover, button.active, button:hover {
     background-color: #4c5674;
 }
 
