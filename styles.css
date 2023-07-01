@@ -1,3 +1,4 @@
+/* transition time on line 22 correlates to transitionTime in script.js */
 body {
     background-color: #000;
     color: #fff;
@@ -5,20 +6,21 @@ body {
 }
 
 #slideshow-container {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    margin-bottom: 200px;
 }
 
 #slideshow-image {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    transition: opacity 3.5s ease-in-out;
+    opacity: 0;
+    transition: opacity 1.0s ease-in-out;
 }
+  
   
 #controls-container {
     text-align: center;
@@ -29,6 +31,7 @@ body {
     display: block;
     color: #fff;
     margin-top: 10px;
+    margin-bottom: 100px;
 }
 
 input[type="file"] {
