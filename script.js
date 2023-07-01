@@ -1,10 +1,13 @@
 window.addEventListener('DOMContentLoaded', function() {
-    const delay = 6_000; 
+    const delay = 5_000; 
+    const transitionTime = 1000;
     const fileInput = document.getElementById('file-input');
     const selectedCount = document.getElementById('selected-count');
     const startSlideshowBtn = document.getElementById('start-slideshow');
     const shuffleToggleBtn = document.getElementById('shuffle-toggle');
     const slideshowImage = document.getElementById('slideshow-image');
+    const slideshowContainer = document.getElementById('slideshow-container');
+
     
     let photos = [];
     let currentPhotoIndex = 0;
@@ -33,34 +36,44 @@ window.addEventListener('DOMContentLoaded', function() {
       
       startSlideshowBtn.disabled = true;
       fileInput.disabled = true;
+
+      slideshowContainer.style.width = '100vw';
+      slideshowContainer.style.height = '100vh';
+
       startSlideshow();
     });
     
     function startSlideshow() {
-      if (currentPhotoIndex >= photos.length) {
-        // Slideshow has ended
-        startSlideshowBtn.disabled = false;
-        fileInput.disabled = false;
-        currentPhotoIndex = 0;
-        return;
-      }
+        if (currentPhotoIndex >= photos.length) {
+          // Slideshow has ended
+          startSlideshowBtn.disabled = false;
+          fileInput.disabled = false;
+          currentPhotoIndex = 0;
+          return;
+        }
       
-      const photo = photos[currentPhotoIndex];
-      const reader = new FileReader();
+        const photo = photos[currentPhotoIndex];
+        const reader = new FileReader();
       
-      reader.addEventListener('load', function() {
-        slideshowImage.src = reader.result;
-        slideshowImage.style.display = 'block';
-        
-        // Move to the next photo after 3 seconds
-        setTimeout(function() {
-          currentPhotoIndex++;
-          startSlideshow();
-        }, delay);
-      });
+        reader.addEventListener('load', function() {
+          slideshowImage.style.opacity = '0'; // Start with opacity 0
       
-      reader.readAsDataURL(photo);
+          // Wait for transition to complete
+          setTimeout(function() {
+            slideshowImage.src = reader.result;
+            slideshowImage.style.opacity = '1'; // Fade in the new photo
+          }, transitionTime);
+      
+          // Move to the next photo after 3 seconds
+          setTimeout(function() {
+            currentPhotoIndex++;
+            startSlideshow();
+          }, delay);
+        });
+      
+        reader.readAsDataURL(photo);
     }
+      
     
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
